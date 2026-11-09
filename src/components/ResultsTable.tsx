@@ -117,14 +117,14 @@ export function ResultsTable() {
 							<th className={headerCellClass}>
 								<button
 									type="button"
-									aria-label="Sort by rank"
+									aria-label="Sort by bib"
 									className={sortButtonClass}
 									onClick={() => handleSort("bib")}
 								>
 									{copy.bib}
 								</button>
 							</th>
-							<th className={headerCellClass} />
+							<th className={headerCellClass}>{copy.athlete}</th>
 							<th className={headerCellClass}>{copy.noc}</th>
 							<th className={headerCellClass}>{copy.status}</th>
 						</tr>
@@ -137,21 +137,13 @@ export function ResultsTable() {
 								<td className={bodyCellClass}>{row.athlete}</td>
 								<td className={bodyCellClass}>{row.noc}</td>
 								<td className={cx(bodyCellClass, standingClass[row.standing])}>
-									{copy.statusMark}
+									{row.standing}
 								</td>
 							</tr>
 						))}
 					</tbody>
 				</table>
 			</Box>
-			<table className={css({ srOnly: true })}>
-				<caption>{copy.resultsCaption}</caption>
-				<tbody>
-					<tr>
-						<td>{copy.statusMark}</td>
-					</tr>
-				</tbody>
-			</table>
 		</Box>
 	);
 }

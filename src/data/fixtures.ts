@@ -47,9 +47,9 @@ export const copy = {
 	resultsCaption: "Heat results",
 	rank: "Rank",
 	bib: "Bib",
+	athlete: "Athlete",
 	noc: "NOC",
 	status: "Status",
-	statusMark: "—",
 } as const;
 
 export const views: readonly ViewOption[] = [

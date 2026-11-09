@@ -113,4 +113,20 @@ describe("Championship Day", () => {
 			screen.getByRole("button", { name: "Schedule", pressed: false }),
 		).toBeInTheDocument();
 	});
+
+	it("labels result columns and shows each status as text", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(screen.getByRole("button", { name: "Results" }));
+
+		expect(
+			screen.getByRole("columnheader", { name: "Athlete" }),
+		).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: "Sort by bib" }),
+		).toBeInTheDocument();
+		expect(screen.getAllByRole("cell", { name: "Qualified" })).toHaveLength(2);
+		expect(screen.getAllByRole("cell", { name: "Eliminated" })).toHaveLength(2);
+	});
 });
