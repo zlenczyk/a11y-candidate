@@ -85,6 +85,21 @@ describe("Championship Day", () => {
 		expect(screen.getByText("Link copied")).toBeInTheDocument();
 	});
 
+	it("lets keyboard users reach and apply the session filters", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(screen.getByRole("button", { name: "Live only" }));
+		await user.tab();
+		await user.tab();
+		await user.keyboard("[Enter]");
+
+		expect(
+			screen.getByRole("button", { name: "Finished", pressed: true }),
+		).toHaveFocus();
+		expect(screen.queryByText("Heat 1")).not.toBeInTheDocument();
+	});
+
 	it("exposes the selected view", async () => {
 		const user = userEvent.setup();
 		render(<App />);
