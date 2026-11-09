@@ -35,7 +35,7 @@ describe("Championship Day", () => {
 		const user = userEvent.setup();
 		render(<App />);
 
-		await user.click(screen.getByRole("tab", { name: "Results" }));
+		await user.click(screen.getByRole("button", { name: "Results" }));
 
 		expect(screen.getByText("Lena Berg")).toBeInTheDocument();
 	});
@@ -44,7 +44,7 @@ describe("Championship Day", () => {
 		const user = userEvent.setup();
 		render(<App />);
 
-		await user.click(screen.getByRole("tab", { name: "Medals" }));
+		await user.click(screen.getByRole("button", { name: "Medals" }));
 
 		expect(
 			screen.getByText("Medal ceremonies are published after the final heat."),
@@ -83,5 +83,19 @@ describe("Championship Day", () => {
 		await user.click(screen.getByRole("button", { name: "Menu" }));
 
 		expect(screen.getByText("Link copied")).toBeInTheDocument();
+	});
+
+	it("exposes the selected view", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(screen.getByRole("button", { name: "Results" }));
+
+		expect(
+			screen.getByRole("button", { name: "Results", pressed: true }),
+		).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: "Schedule", pressed: false }),
+		).toBeInTheDocument();
 	});
 });

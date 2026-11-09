@@ -9,7 +9,6 @@ export type ResultStanding = "Qualified" | "Eliminated";
 export interface ViewOption {
 	id: ViewId;
 	label: string;
-	href: string;
 }
 
 export interface SessionFilterOption {
@@ -54,9 +53,9 @@ export const copy = {
 } as const;
 
 export const views: readonly ViewOption[] = [
-	{ id: "schedule", label: "Schedule", href: "#schedule" },
-	{ id: "results", label: "Results", href: "#results" },
-	{ id: "medals", label: "Medals", href: "#medals" },
+	{ id: "schedule", label: "Schedule" },
+	{ id: "results", label: "Results" },
+	{ id: "medals", label: "Medals" },
 ];
 
 export const sessionFilters: readonly SessionFilterOption[] = [

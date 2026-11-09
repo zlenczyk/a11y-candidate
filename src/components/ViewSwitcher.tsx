@@ -1,4 +1,3 @@
-import type { MouseEvent } from "react";
 import { css } from "styled-system/css";
 
 import { type ViewId, type ViewOption, views } from "../data/fixtures";
@@ -14,13 +13,14 @@ const tabClass = css({
 	borderBottomStyle: "solid",
 	borderBottomWidth: "sm",
 	color: "text.primary",
+	cursor: "pointer",
 	display: "inline-flex",
 	px: "4",
 	py: "2",
 	textDecoration: "none",
 	textStyle: "t_small_b",
 	_hover: { color: "text.link_hover" },
-	"&[aria-selected=true]": {
+	"&[aria-pressed=true]": {
 		borderBottomColor: "border.selected",
 		color: "text.selected",
 	},
@@ -33,14 +33,8 @@ const tabClass = css({
 });
 
 export function ViewSwitcher({ activeView, onViewChange }: ViewSwitcherProps) {
-	const handleSelect = (event: MouseEvent<HTMLAnchorElement>, view: ViewId) => {
-		event.preventDefault();
-		onViewChange(view);
-	};
-
 	return (
-		<div
-			role="tablist"
+		<fieldset
 			aria-label="Views"
 			className={css({
 				borderBottomColor: "border.secondary",
@@ -52,18 +46,17 @@ export function ViewSwitcher({ activeView, onViewChange }: ViewSwitcherProps) {
 			})}
 		>
 			{views.map((view: ViewOption) => (
-				<a
+				<button
 					key={view.id}
-					href={view.href}
-					role="tab"
-					aria-selected={view.id === activeView}
+					type="button"
+					aria-pressed={view.id === activeView}
 					className={tabClass}
-					onClick={(event) => handleSelect(event, view.id)}
+					onClick={() => onViewChange(view.id)}
 				>
 					{view.label}
-				</a>
+				</button>
 			))}
-		</div>
+		</fieldset>
 	);
 }
 
