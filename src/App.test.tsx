@@ -80,9 +80,31 @@ describe("Championship Day", () => {
 		const user = userEvent.setup();
 		render(<App />);
 
-		await user.click(screen.getByRole("button", { name: "Menu" }));
+		await user.click(screen.getByRole("button", { name: "Copy link" }));
 
 		expect(screen.getByText("Link copied")).toBeInTheDocument();
+	});
+
+	it("presents the course banner as text, not an image", () => {
+		render(<App />);
+
+		expect(
+			screen.getByText("Course: 58 gates, 180 m vertical drop"),
+		).toBeInTheDocument();
+		expect(screen.queryByRole("img")).not.toBeInTheDocument();
+	});
+
+	it("names the favorite button and exposes its state", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		const favorite = screen.getByRole("button", {
+			name: "Favorite event",
+			pressed: false,
+		});
+		await user.click(favorite);
+
+		expect(favorite).toHaveAttribute("aria-pressed", "true");
 	});
 
 	it("lets keyboard users reach and apply the session filters", async () => {

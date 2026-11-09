@@ -2,7 +2,6 @@ import { useState } from "react";
 import { css } from "styled-system/css";
 import { Flex, Stack } from "styled-system/jsx";
 
-import alpineSkiing from "../assets/alpine-skiing.svg";
 import { copy } from "../data/fixtures";
 
 const focusRing = {
@@ -46,6 +45,15 @@ const manageAlertsClass = css({
 	...focusRing,
 });
 
+const bannerClass = css({
+	bg: "surface.banner",
+	borderRadius: "lg",
+	color: "text.on_banner",
+	maxW: "full",
+	p: "3",
+	w: "20rem",
+});
+
 export interface SiteHeaderProps {
 	onManageAlerts: () => void;
 }
@@ -63,16 +71,10 @@ export function SiteHeader({ onManageAlerts }: SiteHeaderProps) {
 				gap="4"
 			>
 				<Stack gap="3">
-					<img
-						src={alpineSkiing}
-						alt=""
-						className={css({
-							borderRadius: "lg",
-							h: "auto",
-							maxW: "20rem",
-							w: "full",
-						})}
-					/>
+					<Stack gap="1" className={bannerClass}>
+						<p className={css({ textStyle: "h_large" })}>{copy.bannerTitle}</p>
+						<p className={css({ textStyle: "t_small" })}>{copy.bannerCourse}</p>
+					</Stack>
 					<h1 className={css({ color: "text.primary", textStyle: "h_large" })}>
 						{copy.heading}
 					</h1>
@@ -87,6 +89,8 @@ export function SiteHeader({ onManageAlerts }: SiteHeaderProps) {
 					<Flex gap="2" wrap="wrap">
 						<button
 							type="button"
+							aria-label="Favorite event"
+							aria-pressed={isStarFilled}
 							className={iconButtonClass}
 							onClick={() => setIsStarFilled((current) => !current)}
 						>
@@ -106,7 +110,7 @@ export function SiteHeader({ onManageAlerts }: SiteHeaderProps) {
 						</button>
 						<button
 							type="button"
-							aria-label="Menu"
+							aria-label="Copy link"
 							className={iconButtonClass}
 							onClick={() => setHasCopiedLink(true)}
 						>

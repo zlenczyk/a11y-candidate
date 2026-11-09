@@ -33,6 +33,8 @@ export interface AthleteResult {
 }
 
 export const copy = {
+	bannerTitle: "Alpine skiing",
+	bannerCourse: "Course: 58 gates, 180 m vertical drop",
 	heading: "Championship Day",
 	event: "Alpine skiing — women's slalom",
 	date: "12 February",

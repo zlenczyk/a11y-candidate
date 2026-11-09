@@ -25,6 +25,7 @@ const colors = defineSemanticTokens.colors({
 		elevated: sv("#e2e3e8", "#3d4251"),
 		brand: sv("#5329ff", "#6e49ff"),
 		scrim: sv("rgba(22, 25, 35, 0.6)", "rgba(22, 25, 35, 0.6)"),
+		banner: sv("#063a5a", "#063a5a"),
 	},
 	border: {
 		primary: sv("#d7d9de", "#5f6573"),
@@ -50,6 +51,7 @@ const colors = defineSemanticTokens.colors({
 		primary: sv("#161923", "#ffffff"),
 		secondary: sv("#5f6573", "#b3b5bd"),
 		on_brand: sv("#ffffff", "#ffffff"),
+		on_banner: sv("#ffffff", "#ffffff"),
 		link_hover: sv("#5329ff", "#6e49ff"),
 		selected: sv("#5329ff", "#6e49ff"),
 	},
