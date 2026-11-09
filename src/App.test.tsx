@@ -136,6 +136,20 @@ describe("Championship Day", () => {
 		).toBeInTheDocument();
 	});
 
+	it("names the alerts dialog and returns focus when it closes", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		const opener = screen.getByRole("button", { name: "Manage alerts" });
+		await user.click(opener);
+		expect(
+			screen.getByRole("dialog", { name: "Alert preferences" }),
+		).toBeInTheDocument();
+		await user.click(screen.getByRole("button", { name: "Close" }));
+
+		expect(opener).toHaveFocus();
+	});
+
 	it("labels result columns and shows each status as text", async () => {
 		const user = userEvent.setup();
 		render(<App />);
